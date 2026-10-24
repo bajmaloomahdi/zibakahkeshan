@@ -272,7 +272,7 @@
   </style>
 </head>
 <body>
-  <div class="announcement">زیبایی از مراقبت‌های کوچک هر روز شروع می‌شود <span aria-hidden="true">✦</span></div>
+  <div class="announcement">برای نمایش تغییرات روی همهٔ دستگاه‌ها، فایل HTML را پس از ویرایش در GitHub Pages منتشر کن <span aria-hidden="true">✦</span></div>
   <header class="topbar">
     <a class="brand" href="#home" aria-label="زیبا کهکشان، صفحه اصلی">
       <span class="brand-mark"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 3.5c1.8 6.5 4.1 8.8 10.5 10.5-6.4 1.7-8.7 4-10.5 10.5-1.7-6.5-4-8.8-10.5-10.5C12 12.3 14.3 10 16 3.5Z" fill="currentColor"/><circle cx="25.5" cy="6.5" r="2" fill="#BD806B"/><circle cx="6" cy="24.5" r="1.7" fill="#BD806B"/></svg></span>
@@ -354,7 +354,7 @@
       <div class="footer-inner">
         <div class="footer-brand"><a class="brand" href="#home"><span class="brand-mark"><svg viewBox="0 0 32 32" fill="none"><path d="M16 3.5c1.8 6.5 4.1 8.8 10.5 10.5-6.4 1.7-8.7 4-10.5 10.5-1.7-6.5-4-8.8-10.5-10.5C12 12.3 14.3 10 16 3.5Z" fill="currentColor"/><circle cx="25.5" cy="6.5" r="2" fill="#BD806B"/></svg></span><span><span class="brand-name">زیبا کهکشان</span><span class="brand-sub">BEAUTY • CARE • YOU</span></span></a><p>یک فروشگاه کوچک و دوست‌داشتنی برای محصولات زیبایی و مراقبت. اینجا می‌توانی محصولات و دسته‌بندی‌ها را خودت مدیریت کنی.</p></div>
         <div class="footer-col"><h3>دسترسی سریع</h3><a href="#home">صفحه اصلی</a><a href="#catalog">همه محصولات</a><a href="#catalog" data-nav-category="مراقبت پوست">مراقبت پوست</a></div>
-        <div class="footer-col"><h3>راهنما</h3><p>برای ویرایش محصولات، دکمه «مدیریت فروشگاه» را بزن.</p><p>تغییرات در مرورگر همین دستگاه ذخیره می‌شوند.</p></div>
+        <div class="footer-col"><h3>راهنما</h3><p>برای ویرایش محصولات، دکمه «مدیریت فروشگاه» را بزن.</p><p>ویرایش‌ها ابتدا محلی‌اند؛ برای انتشار، فایل HTML جدید را در GitHub جایگزین کن.</p></div>
       </div>
       <div class="footer-note"><span>© زیبا کهکشان — فروشگاه زیبایی و مراقبت</span><strong>با عشق برای تو ساخته شده ✦</strong></div>
     </div>
@@ -376,12 +376,14 @@
       <div class="cart-footer" id="cartFooter"></div>
     </section>
   </div>
+  <script id="published-store" type="application/json">{"categories":["مراقبت پوست","آرایش","مو و بدن","عطر و رایحه"],"products":[{"id":"demo-serum","name":"سرم آبرسان هیالورونیک","description":"آبرسانی سبک و طراوت‌بخش برای هر روز","price":485000,"category":"مراقبت پوست","images":[],"badge":"پرفروش","kind":"dropper","color":"#C58D73"},{"id":"demo-sunscreen","name":"ضدآفتاب روزانه SPF 50","description":"محافظت روزانه با بافت سبک و بی‌رنگ","price":398000,"category":"مراقبت پوست","images":[],"badge":"انتخاب روز","kind":"tube","color":"#8EA18D"},{"id":"demo-cleanser","name":"ژل شست‌وشوی ملایم","description":"پاکیزگی لطیف بدون حس خشکی","price":265000,"category":"مراقبت پوست","images":[],"badge":"ملایم","kind":"pump","color":"#AFC0AC"},{"id":"demo-cream","name":"کرم مرطوب‌کننده شب","description":"نرمی و رطوبت برای روتین شبانه","price":440000,"category":"مراقبت پوست","images":[],"badge":"مراقبت شب","kind":"jar","color":"#C9A889"},{"id":"demo-lip","name":"بالم لب رنگی رز","description":"نرمی لب با رنگ طبیعی و لطیف","price":185000,"category":"آرایش","images":[],"badge":"رنگ محبوب","kind":"lipstick","color":"#BE7A75"},{"id":"demo-hair","name":"ماسک موی مغذی","description":"نرمی و درخشش برای موهای خسته","price":325000,"category":"مو و بدن","images":[],"badge":"مغذی","kind":"jar","color":"#89987E"},{"id":"demo-mist","name":"بادی‌میست گل‌های بهاری","description":"رایحه‌ای سبک برای لحظه‌های خوب","price":355000,"category":"عطر و رایحه","images":[],"badge":"رایحه لطیف","kind":"mist","color":"#D09E91"},{"id":"demo-mask","name":"ماسک صورت آرامش‌بخش","description":"لحظه‌ای استراحت برای پوستت","price":290000,"category":"مراقبت پوست","images":[],"badge":"آرامش‌بخش","kind":"jar","color":"#91A18D"}]}</script>
   <input type="file" id="importFile" accept="application/json,.json" hidden>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
     (() => {
       'use strict';
+      const PAGE_TEMPLATE='<!doctype html>\n'+document.documentElement.outerHTML;
       const STORAGE_KEY = 'zibaGalaxyStore_v1';
       const CART_KEY = 'zibaGalaxyCart_v1';
       const DEFAULT_DATA = {
@@ -401,6 +403,10 @@
       const $$ = (s, root=document) => [...root.querySelectorAll(s)];
       const clone = obj => JSON.parse(JSON.stringify(obj));
       const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+      const safeGet = key => { try { return window.localStorage.getItem(key); } catch(e) { return null; } };
+      const safeSet = (key,value) => { try { window.localStorage.setItem(key,value); return true; } catch(e) { return false; } };
+      const safeRemove = key => { try { window.localStorage.removeItem(key); return true; } catch(e) { return false; } };
+      const PUBLISHED_DATA = (() => { try { return JSON.parse(document.getElementById('published-store').textContent); } catch(e) { return null; } })();
       const faNumber = value => new Intl.NumberFormat('fa-IR').format(Number(value) || 0);
       const formatPrice = value => `${faNumber(value)} <small>تومان</small>`;
       const makeId = () => 'p-' + Date.now().toString(36) + Math.random().toString(36).slice(2,7);
@@ -420,26 +426,24 @@
         const scene = `<circle cx="111" cy="112" r="88" fill="#FFFFFF" fill-opacity=".45"/><circle cx="46" cy="69" r="3" fill="${color}" fill-opacity=".55"/><path d="M172 59v12m-6-6h12" stroke="#BD806B" stroke-width="2" stroke-linecap="round"/>`;
         return commonStart + scene + body + '</svg>';
       };
-      const defaultData = () => clone(DEFAULT_DATA);
+      const defaultData = () => clone(PUBLISHED_DATA || DEFAULT_DATA);
+      function normalizeData(parsed){
+        if(!parsed||!Array.isArray(parsed.products)||!Array.isArray(parsed.categories))return defaultData();
+        const categories=[...new Set(parsed.categories.map(x=>String(x).trim()).filter(Boolean))];if(!categories.length)categories.push('عمومی');
+        const products=parsed.products.filter(p=>p&&typeof p==='object').map(p=>{const images=Array.isArray(p.images)&&p.images.length?p.images.filter(x=>typeof x==='string'):(typeof p.image==='string'&&p.image?[p.image]:[]);const product={...p,id:String(p.id||makeId()),name:String(p.name||'محصول بدون نام'),description:String(p.description||''),price:Math.max(0,Number(p.price)||0),category:categories.includes(p.category)?p.category:categories[0],images,badge:String(p.badge||''),kind:String(p.kind||'bottle'),color:/^#[0-9a-f]{6}$/i.test(p.color||'')?p.color:'#AAB5A7'};delete product.image;return product;});
+        return {categories,products};
+      }
+      const HAS_LOCAL_STORE=Boolean(safeGet(STORAGE_KEY));
       const loadData = () => {
-        try {
-          const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
-          if(parsed && Array.isArray(parsed.products) && Array.isArray(parsed.categories)) {
-            parsed.categories = [...new Set(parsed.categories.map(x=>String(x).trim()).filter(Boolean))];
-            if(!parsed.categories.length) parsed.categories=['عمومی'];
-            parsed.products = parsed.products.filter(p=>p && typeof p==='object').map(p=>{const images=Array.isArray(p.images)&&p.images.length?p.images.filter(x=>typeof x==='string'):(typeof p.image==='string'&&p.image?[p.image]:[]);const product={...p,id:String(p.id||makeId()),name:String(p.name||'محصول بدون نام'),description:String(p.description||''),price:Math.max(0,Number(p.price)||0),category:parsed.categories.includes(p.category)?p.category:parsed.categories[0],images};delete product.image;return product;});
-            return parsed;
-          }
-        } catch(e) { console.warn('ذخیره قبلی قابل خواندن نبود.',e); }
-        const fresh=defaultData();
-        try { localStorage.setItem(STORAGE_KEY,JSON.stringify(fresh)); } catch(e) {}
-        return fresh;
+        try {const parsed=JSON.parse(safeGet(STORAGE_KEY)||'null');if(parsed)return normalizeData(parsed);}
+        catch(e) { console.warn('ذخیره قبلی قابل خواندن نبود.',e); }
+        return normalizeData(defaultData());
       };
       let data = loadData();
       let cart = {};
       let favorites = new Set();
-      try { cart=JSON.parse(localStorage.getItem(CART_KEY)||'{}')||{}; } catch(e) { cart={}; }
-      try { favorites=new Set(JSON.parse(localStorage.getItem('zibaGalaxyFavorites_v1')||'[]')); } catch(e) {}
+      try { cart=JSON.parse(safeGet(CART_KEY)||'{}')||{}; } catch(e) { cart={}; }
+      try { favorites=new Set(JSON.parse(safeGet('zibaGalaxyFavorites_v1')||'[]')); } catch(e) {}
       let activeCategory='همه محصولات';
       let searchTerm='';
       let sortMode='featured';
@@ -450,10 +454,11 @@
       let activeProductId='';
 
       function persistData() {
-        try { localStorage.setItem(STORAGE_KEY,JSON.stringify(data)); return true; }
-        catch(e) { showToast('فضای ذخیره مرورگر پر شده؛ عکس کوچک‌تری انتخاب کن یا نسخه پشتیبان بگیر.'); return false; }
+        const ok=safeSet(STORAGE_KEY,JSON.stringify(data));
+        if(!ok)showToast('فضای ذخیره مرورگر کافی نیست؛ فایل HTML را فوراً دانلود کن تا تغییرات از دست نروند.');
+        return ok;
       }
-      function persistCart(){try{localStorage.setItem(CART_KEY,JSON.stringify(cart));}catch(e){}}
+      function persistCart(){safeSet(CART_KEY,JSON.stringify(cart));}
       function showToast(message){const el=$('#toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2800);}
       function getProductImages(p){if(Array.isArray(p.images)&&p.images.length)return p.images.filter(x=>typeof x==='string'&&x);return p.image?[p.image]:[];}
       function productVisual(p, compact=false){const image=getProductImages(p)[0];return image ? `<img src="${esc(image)}" alt="${esc(p.name)}">` : artSvg(p,compact);}
@@ -523,7 +528,7 @@
         } else if(tab==='categories'){
           root.innerHTML=`<div class="admin-toolbar"><div><h3>دسته‌بندی‌ها</h3><p>برای تغییر نام، متن را ویرایش و ذخیره کن. محصولاتِ آن دسته هم خودکار به‌روز می‌شوند.</p></div></div><div class="category-list">${data.categories.map((c,i)=>`<form class="category-row" data-rename-category="${esc(c)}"><input name="newName" value="${esc(c)}" aria-label="نام دسته‌بندی ${esc(c)}"><span style="font-size:9px;color:#929991;white-space:nowrap">${faNumber(data.products.filter(p=>p.category===c).length)} محصول</span><div style="display:flex;gap:5px"><button class="mini-action" type="submit">ذخیره</button><button class="mini-action danger" type="button" data-delete-category="${esc(c)}">حذف</button></div></form>`).join('')}</div><form class="add-category-form" id="addCategoryForm"><input class="simple-input" name="category" placeholder="نام دسته‌بندی جدید" maxlength="40" required><button class="small-button solid" type="submit">افزودن دسته</button></form>`;
         } else {
-          root.innerHTML=`<div class="admin-toolbar"><div><h3>پشتیبان‌گیری و انتقال</h3><p>از محصولات، عکس‌ها و دسته‌بندی‌ها یک فایل نگه دار.</p></div></div><div class="backup-grid"><section class="backup-card"><h4>خروجی گرفتن از فروشگاه</h4><p>یک فایل JSON شامل اطلاعات محصولات، عکس‌های بارگذاری‌شده و دسته‌بندی‌ها روی دستگاهت ذخیره می‌شود.</p><button class="small-button solid" type="button" id="exportButton">دانلود نسخه پشتیبان</button></section><section class="backup-card"><h4>بازیابی نسخه پشتیبان</h4><p>فایل پشتیبان قبلی را انتخاب کن تا اطلاعات فروشگاه در همین مرورگر جایگزین شود.</p><button class="small-button" type="button" id="importButton">انتخاب فایل پشتیبان</button></section></div><div class="backup-tip"><strong>نکته:</strong> چون این سایت بدون سرور و پایگاه‌داده ساخته شده، تغییرات فقط در مرورگر و دستگاه فعلی ذخیره می‌شوند؛ با خروجی گرفتن می‌توانی اطلاعات را به دستگاه دیگری منتقل کنی.</div>`;
+          root.innerHTML=`<div class="admin-toolbar"><div><h3>انتشار و پشتیبان</h3><p>نسخهٔ مناسب GitHub Pages را مستقیم از همین پنل آماده کن.</p></div></div><div class="backup-grid"><section class="backup-card"><h4>انتشار در GitHub Pages</h4><p>یک فایل کامل <b>index.html</b> با همهٔ محصولات و عکس‌ها می‌سازد. فایل دانلودشده را در مخزن GitHub جایگزین فایل قبلی کن و تغییرات را Commit کن.</p><button class="small-button solid" type="button" id="exportSiteButton">دانلود index.html برای انتشار</button></section><section class="backup-card"><h4>پشتیبان اطلاعات</h4><p>خروجی JSON برای نگه‌داری یا انتقال پیش‌نویس محصولات و گالری عکس‌ها.</p><button class="small-button" type="button" id="exportButton">دانلود پشتیبان JSON</button></section><section class="backup-card"><h4>بازیابی پشتیبان JSON</h4><p>فایل JSON قبلی را وارد کن تا پیش‌نویس محصولات در همین مرورگر بازیابی شود.</p><button class="small-button" type="button" id="importButton">انتخاب فایل JSON</button></section><section class="backup-card"><h4>پاک‌کردن پیش‌نویس محلی</h4><p>پیش‌نویس این مرورگر را پاک کن و اطلاعات داخل فایل index.html منتشرشده را دوباره ببین.</p><button class="small-button" type="button" id="resetDraftButton">بارگذاری نسخهٔ منتشرشده</button></section></div><div class="backup-tip"><strong>مهم:</strong> GitHub Pages فقط فایل‌های ایستا را میزبانی می‌کند و از داخل سایت نمی‌تواند فایل مخزن را تغییر دهد. ویرایش‌ها ابتدا در همین مرورگر ذخیره می‌شوند؛ برای دیده‌شدن روی گوشی‌های دیگر، فایل دانلودشدهٔ <b>index.html</b> را در ریشهٔ مخزن آپلود و Commit کن. عکس‌ها داخل همان HTML جاسازی می‌شوند.</div>`;
         }
       }
       function openProductForm(id=null){
@@ -554,7 +559,19 @@
       }
       function exportBackup(){
         const contents=JSON.stringify({app:'ziba-galaxy',version:1,exportedAt:new Date().toISOString(),categories:data.categories,products:data.products},null,2);
-        const blob=new Blob([contents],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='ziba-galaxy-backup.json';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);showToast('نسخه پشتیبان دانلود شد.');
+        const blob=new Blob([contents],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='ziba-galaxy-backup.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);showToast('نسخهٔ پشتیبان JSON دانلود شد.');
+      }
+      function blobToDataUrl(blob){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(new Error('خواندن عکس ناموفق بود.'));reader.readAsDataURL(blob);});}
+      async function exportSiteHtml(){
+        const exportData={categories:[...data.categories],products:data.products.map(p=>({...p,images:getProductImages(p)}))};
+        try{
+          for(const product of exportData.products){const embedded=[];for(const src of product.images){if(typeof src==='string'&&src.startsWith('/uploads/')){const response=await fetch(src);if(!response.ok)throw new Error('عکس‌هایی که هنوز در پوشهٔ سرور هستند در این صفحه در دسترس نیستند؛ آن‌ها را دوباره انتخاب کن.');embedded.push(await blobToDataUrl(await response.blob()));}else embedded.push(src);}product.images=embedded;delete product.image;}
+        }catch(error){showToast(error.message||'آماده‌سازی عکس‌ها ناموفق بود.');return;}
+        const json=JSON.stringify(exportData).replace(/</g,'\\u003c');
+        const startMarker='<script id="published-store" type="application/json">';const endMarker='</scr'+'ipt>';const startIndex=PAGE_TEMPLATE.indexOf(startMarker);const endIndex=PAGE_TEMPLATE.indexOf(endMarker,startIndex+startMarker.length);
+        if(startIndex<0||endIndex<0){showToast('قالب انتشار HTML پیدا نشد.');return;}
+        const html=PAGE_TEMPLATE.slice(0,startIndex+startMarker.length)+json+PAGE_TEMPLATE.slice(endIndex);
+        const url=URL.createObjectURL(new Blob([html],{type:'text/html;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='index.html';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);showToast('فایل index.html آمادهٔ انتشار دانلود شد.');
       }
       async function importBackup(file){
         if(!file)return;
@@ -564,7 +581,7 @@
           const categories=[...new Set(parsed.categories.map(x=>String(x).trim()).filter(Boolean))];if(!categories.length)categories.push('عمومی');
           const products=parsed.products.map(p=>{const images=Array.isArray(p.images)&&p.images.length?p.images.filter(x=>typeof x==='string'):(typeof p.image==='string'&&p.image?[p.image]:[]);return {id:String(p.id||makeId()),name:String(p.name||'محصول بدون نام').slice(0,80),description:String(p.description||'').slice(0,180),price:Math.max(0,Number(p.price)||0),category:categories.includes(p.category)?p.category:categories[0],images,badge:String(p.badge||'').slice(0,24),kind:String(p.kind||'bottle'),color:/^#[0-9a-f]{6}$/i.test(p.color||'')?p.color:'#AAB5A7'};});
           if(!confirm(`اطلاعات فعلی با ${faNumber(products.length)} محصول جایگزین شود؟`))return;
-          data={categories,products};cart={};persistData();persistCart();renderProducts();renderAdmin('products');renderRoute();updateCartCount();showToast('نسخه پشتیبان بازیابی شد.');
+          data={categories,products};cart={};if(!(await persistData()))return;persistCart();renderProducts();renderAdmin('products');renderRoute();updateCartCount();showToast('نسخه پشتیبان بازیابی شد.');
         }catch(e){showToast(e.message==='ساختار فایل درست نیست.'?e.message:'فایل پشتیبان قابل خواندن نیست.');}
       }
 
@@ -575,7 +592,7 @@
         const add=e.target.closest('[data-add]');
         if(add){cart[add.dataset.add]=(Number(cart[add.dataset.add])||0)+1;persistCart();updateCartCount();showToast('به سبد خرید اضافه شد.');return;}
         const fav=e.target.closest('[data-favorite]');
-        if(fav){const id=fav.dataset.favorite;if(favorites.has(id))favorites.delete(id);else favorites.add(id);try{localStorage.setItem('zibaGalaxyFavorites_v1',JSON.stringify([...favorites]));}catch(err){}renderProducts();}
+        if(fav){const id=fav.dataset.favorite;if(favorites.has(id))favorites.delete(id);else favorites.add(id);safeSet('zibaGalaxyFavorites_v1',JSON.stringify([...favorites]));renderProducts();}
       });
       $('#productDetail').addEventListener('click',e=>{
         if(e.target.closest('[data-return-catalog]')){location.hash='catalog';return;}
@@ -595,18 +612,20 @@
       $('#adminClose').addEventListener('click',closeAdmin);
       $('#adminOverlay').addEventListener('click',e=>{if(e.target===$('#adminOverlay'))closeAdmin();});
       $('#adminTabs').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(b)renderAdmin(b.dataset.tab);});
-      $('#adminContent').addEventListener('click',e=>{
+      $('#adminContent').addEventListener('click',async e=>{
         const add=e.target.closest('#newProductButton');if(add){openProductForm();return;}
         const edit=e.target.closest('[data-edit-product]');if(edit){openProductForm(edit.dataset.editProduct);return;}
-        const del=e.target.closest('[data-delete-product]');if(del){const product=data.products.find(p=>p.id===del.dataset.deleteProduct);if(product&&confirm(`«${product.name}» از فروشگاه حذف شود؟`)){data.products=data.products.filter(p=>p.id!==product.id);delete cart[product.id];persistData();persistCart();renderProducts();renderAdmin('products');renderRoute();updateCartCount();showToast('محصول حذف شد.');}return;}
-        const removeCat=e.target.closest('[data-delete-category]');if(removeCat){const cat=removeCat.dataset.deleteCategory;if(data.categories.length===1){showToast('فروشگاه باید دست‌کم یک دسته‌بندی داشته باشد.');return;}if(confirm(`دسته «${cat}» حذف شود؟ محصولات آن به دسته دیگری منتقل می‌شوند.`)){const fallback=data.categories.find(c=>c!==cat);data.categories=data.categories.filter(c=>c!==cat);data.products=data.products.map(p=>p.category===cat?{...p,category:fallback}:p);persistData();renderProducts();renderAdmin('categories');renderRoute();showToast('دسته‌بندی حذف شد.');}return;}
+        const del=e.target.closest('[data-delete-product]');if(del){const product=data.products.find(p=>p.id===del.dataset.deleteProduct);if(product&&confirm(`«${product.name}» از فروشگاه حذف شود؟`)){data.products=data.products.filter(p=>p.id!==product.id);delete cart[product.id];const saved=await persistData();persistCart();renderProducts();renderAdmin('products');renderRoute();updateCartCount();if(saved)showToast('محصول حذف شد.');}return;}
+        const removeCat=e.target.closest('[data-delete-category]');if(removeCat){const cat=removeCat.dataset.deleteCategory;if(data.categories.length===1){showToast('فروشگاه باید دست‌کم یک دسته‌بندی داشته باشد.');return;}if(confirm(`دسته «${cat}» حذف شود؟ محصولات آن به دسته دیگری منتقل می‌شوند.`)){const fallback=data.categories.find(c=>c!==cat);data.categories=data.categories.filter(c=>c!==cat);data.products=data.products.map(p=>p.category===cat?{...p,category:fallback}:p);const saved=await persistData();renderProducts();renderAdmin('categories');renderRoute();if(saved)showToast('دسته‌بندی حذف شد.');}return;}
+        if(e.target.closest('#exportSiteButton')){await exportSiteHtml();return;}
         if(e.target.closest('#exportButton')){exportBackup();return;}
         if(e.target.closest('#importButton')){$('#importFile').click();return;}
+        if(e.target.closest('#resetDraftButton')){if(confirm('پیش‌نویس محلی پاک شود و اطلاعات داخل فایل منتشرشده دوباره بارگذاری شود؟')){safeRemove(STORAGE_KEY);safeRemove(CART_KEY);location.reload();}return;}
       });
-      $('#adminContent').addEventListener('submit',e=>{
+      $('#adminContent').addEventListener('submit',async e=>{
         const rename=e.target.closest('[data-rename-category]');
-        if(rename){e.preventDefault();const old=rename.dataset.renameCategory;const next=new FormData(rename).get('newName').trim();if(!next){showToast('نام دسته‌بندی را وارد کن.');return;}if(data.categories.some(c=>c!==old&&c.toLocaleLowerCase('fa')===next.toLocaleLowerCase('fa'))){showToast('این نام دسته‌بندی از قبل وجود دارد.');return;}data.categories=data.categories.map(c=>c===old?next:c);data.products=data.products.map(p=>p.category===old?{...p,category:next}:p);if(activeCategory===old)activeCategory=next;persistData();renderProducts();renderAdmin('categories');renderRoute();showToast('نام دسته‌بندی ذخیره شد.');return;}
-        if(e.target.id==='addCategoryForm'){e.preventDefault();const value=new FormData(e.target).get('category').trim();if(!value)return;if(data.categories.some(c=>c.toLocaleLowerCase('fa')===value.toLocaleLowerCase('fa'))){showToast('این دسته‌بندی از قبل وجود دارد.');return;}data.categories.push(value);persistData();renderProducts();renderAdmin('categories');showToast('دسته‌بندی اضافه شد.');}
+        if(rename){e.preventDefault();const old=rename.dataset.renameCategory;const next=new FormData(rename).get('newName').trim();if(!next){showToast('نام دسته‌بندی را وارد کن.');return;}if(data.categories.some(c=>c!==old&&c.toLocaleLowerCase('fa')===next.toLocaleLowerCase('fa'))){showToast('این نام دسته‌بندی از قبل وجود دارد.');return;}data.categories=data.categories.map(c=>c===old?next:c);data.products=data.products.map(p=>p.category===old?{...p,category:next}:p);if(activeCategory===old)activeCategory=next;const saved=await persistData();renderProducts();renderAdmin('categories');renderRoute();if(saved)showToast('نام دسته‌بندی ذخیره شد.');return;}
+        if(e.target.id==='addCategoryForm'){e.preventDefault();const value=new FormData(e.target).get('category').trim();if(!value)return;if(data.categories.some(c=>c.toLocaleLowerCase('fa')===value.toLocaleLowerCase('fa'))){showToast('این دسته‌بندی از قبل وجود دارد.');return;}data.categories.push(value);const saved=await persistData();renderProducts();renderAdmin('categories');if(saved)showToast('دسته‌بندی اضافه شد.');}
       });
       $('#productOverlay').addEventListener('click',e=>{
         if(e.target===$('#productOverlay')){closeProductForm();return;}
@@ -624,12 +643,12 @@
         for(const file of files.slice(0,room)){try{productImageDraft.push(await compressImage(file));}catch(err){showToast(err.message);}}
         $('#imageDraftList').innerHTML=draftGalleryMarkup();$('#imageHint').textContent=`${faNumber(productImageDraft.length)} تصویر در گالری است؛ تصویر اول عکس اصلی است.`;e.target.value='';
       });
-      $('#productOverlay').addEventListener('submit',e=>{
+      $('#productOverlay').addEventListener('submit',async e=>{
         if(e.target.id!=='productForm')return;e.preventDefault();const form=e.target;const fd=new FormData(form);const name=String(fd.get('name')||'').trim();const price=Number(fd.get('price'));const category=String(fd.get('category')||'');if(!name||!Number.isFinite(price)||price<0||!category){showToast('نام، قیمت و دسته‌بندی را کامل وارد کن.');return;}
         const id=form.dataset.id||makeId();const prior=data.products.find(p=>p.id===id);const images=productImageDraft.slice();
         const product={id,name,description:String(fd.get('description')||'').trim(),price,category,images,badge:String(fd.get('badge')||'').trim(),kind:prior?.kind||'bottle',color:String(fd.get('color')||'#AAB5A7')};
         if(prior)data.products=data.products.map(p=>p.id===id?product:p);else data.products.unshift(product);
-        if(persistData()){closeProductForm();renderProducts();renderAdmin('products');renderRoute();showToast(prior?'تغییرات محصول ذخیره شد.':'محصول تازه اضافه شد.');}
+        if(await persistData()){closeProductForm();renderProducts();renderAdmin('products');renderRoute();showToast(prior?'تغییرات محصول ذخیره شد.':'محصول تازه اضافه شد.');}
       });
       $('#importFile').addEventListener('change',e=>{importBackup(e.target.files&&e.target.files[0]);e.target.value='';});
       $('#cartOpen').addEventListener('click',openCart);$('#cartClose').addEventListener('click',closeCart);
@@ -642,5 +661,5 @@
       renderProducts();updateCartCount();renderRoute();
     })();
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a473b6e1ac5993b5',t:'MTc5MTQ0NzUwMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
